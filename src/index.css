@@ -1,0 +1,18 @@
+/* styles.css or App.css */
+
+body {
+  background-color: white;
+  color: black;
+}
+
+/* When dark mode is active */
+html.dark body {
+  background-color: #121212;
+  color: white;
+}
+
+/* Optional - dark mode for button */
+html.dark .theme-toggle-btn {
+  background-color: #444;
+  color: white;
+}
