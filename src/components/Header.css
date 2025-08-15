@@ -1,0 +1,468 @@
+/* Horizontal navbar, responsive, active highlight, no Tailwind */
+
+:root {
+  --bg: #ffffff;
+  --text: #0f1724;
+  --muted: #556073;
+  --accent-1: #6366f1;
+  --accent-2: #8b5cf6;
+  --nav-height: 64px;
+}
+
+html.dark {
+  --bg: #071024;
+  --text: #e6eef8;
+  --muted: #9aa8bf;
+}
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 60;
+  background: var(--bg);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+  backdrop-filter: blur(6px);
+}
+
+/* navbar layout */
+.navbar {
+  max-width: 1100px;
+  margin: 0 auto;
+  height: var(--nav-height);
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 16px;
+  padding: 0 16px;
+  box-sizing: border-box;
+}
+
+/* left brand */
+.brand {
+  font-weight: 700;
+  color: var(--text);
+  text-decoration: none;
+  font-size: 1rem;
+  padding: 6px 8px;
+}
+.brand:focus {
+  outline: 3px solid rgba(99, 102, 241, 0.14);
+  outline-offset: 2px;
+}
+
+/* nav links (center) */
+.nav-links {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.nav-item {
+  display: inline-block;
+}
+
+.nav-link {
+  display: inline-block;
+  text-decoration: none;
+  color: var(--muted);
+  padding: 8px 10px;
+  border-radius: 8px;
+  font-weight: 600;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+.nav-link:hover {
+  background: rgba(99, 102, 241, 0.06);
+  color: var(--text);
+}
+
+/* active */
+.nav-link.active,
+.nav-link[aria-current="true"] {
+  background: linear-gradient(90deg, var(--accent-1), var(--accent-2));
+  color: #fff;
+  box-shadow: 0 8px 24px rgba(99, 102, 241, 0.12);
+}
+
+/* right controls */
+.nav-right {
+  display: flex;
+  gap: 8px;
+  justify-self: end;
+  align-items: center;
+}
+.theme-button {
+  background: transparent;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  padding: 6px 10px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+/* mobile: hide center links and show toggle */
+.nav-toggle {
+  display: none;
+  background: transparent;
+  border: 0;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+@media (max-width: 800px) {
+  .navbar {
+    grid-template-columns: auto auto auto;
+    padding: 0 12px;
+  }
+  .nav-links {
+    display: none;
+    position: absolute;
+    left: 12px;
+    right: 12px;
+    top: var(--nav-height);
+    background: var(--bg);
+    flex-direction: column;
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 0 10px 30px rgba(2, 6, 23, 0.12);
+  }
+  .nav-links.open {
+    display: flex;
+  }
+  .nav-toggle {
+    display: block;
+  }
+  .brand {
+    font-size: 0.95rem;
+  }
+  .nav-right {
+    order: 3;
+  }
+}
+
+/* accessibility focus */
+.nav-link:focus-visible,
+.theme-button:focus-visible {
+  outline: 3px solid rgba(99, 102, 241, 0.14);
+  outline-offset: 2px;
+  border-radius: 8px;
+}
+
+/* Basic, responsive styles (no Tailwind). Adjust colors as needed. */
+
+:root {
+  --bg: #ffffff;
+  --muted: #555;
+  --accent-1: #6366f1; /* indigo */
+  --accent-2: #8b5cf6; /* purple */
+  --accent-3: #ec4899; /* pink */
+  --text: #111827;
+  --card: #f8fafc;
+}
+
+/* Dark mode overrides */
+html.dark {
+  --bg: #071024;
+  --muted: #cbd5e1;
+  --text: #e6eef8;
+  --card: #0b1220;
+}
+
+/* HERO */
+.hero {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  padding: 4rem 1.5rem;
+  background: var(--bg);
+  color: var(--text);
+  gap: 1.5rem;
+}
+
+.hero-left {
+  flex: 1 1 420px;
+  min-width: 260px;
+  max-width: 800px;
+}
+
+.hero-right {
+  flex: 0 0 220px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Title */
+.hero-title {
+  margin: 0;
+  font-weight: 800;
+  font-size: 2rem;
+  line-height: 1.05;
+  color: var(--text);
+}
+
+.hero-name {
+  background: linear-gradient(
+    90deg,
+    var(--accent-1),
+    var(--accent-2),
+    var(--accent-3)
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.hero-subtitle {
+  font-weight: 600;
+  font-size: 1.05rem;
+  color: var(--muted);
+}
+
+/* Description and actions */
+.hero-desc {
+  margin-top: 1rem;
+  color: var(--muted);
+  max-width: 54rem;
+}
+
+.hero-actions {
+  margin-top: 1.25rem;
+}
+
+.btn-primary {
+  background: linear-gradient(90deg, var(--accent-1), var(--accent-2));
+  color: #fff;
+  border: 0;
+  padding: 0.6rem 1rem;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 6px 18px rgba(99, 102, 241, 0.12);
+}
+.btn-primary:hover {
+  transform: translateY(-1px);
+}
+
+/* Profile image */
+.profile-img {
+  width: 192px;
+  height: 192px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid rgba(255, 255, 255, 0.85);
+  box-shadow: 0 10px 30px rgba(2, 6, 23, 0.12);
+  background: var(--card);
+}
+
+/* Top header with centered name */
+.top-header {
+  padding: 0.75rem 1.5rem;
+  background: var(--bg);
+  color: var(--text);
+  border-top: 1px solid rgba(0, 0, 0, 0.04);
+}
+
+.header-grid {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 1rem;
+}
+
+/* center area */
+.center-title {
+  text-align: center;
+  justify-self: center;
+}
+
+.name-gradient {
+  margin: 0;
+  font-size: 1.875rem;
+  font-weight: 800;
+  background: linear-gradient(
+    90deg,
+    var(--accent-1),
+    var(--accent-2),
+    var(--accent-3)
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-shadow: 0 4px 18px rgba(0, 0, 0, 0.06);
+}
+
+.subtitle {
+  margin: 0.25rem 0 0 0;
+  font-size: 0.875rem;
+  color: var(--muted);
+}
+
+/* right area */
+.header-right {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.nav-links {
+  list-style: none; /* remove bullets */
+  padding: 0;
+  margin: 0;
+  display: flex; /* arrange horizontally */
+  gap: 1.5rem; /* space between items */
+  align-items: center;
+}
+
+.nav-link {
+  background: none;
+  border: none;
+  font: inherit;
+  cursor: pointer;
+  padding: 0;
+  color: inherit;
+}
+
+/* Active / highlighted nav link */
+.nav-link.active,
+.nav-link[aria-current="true"] {
+  background: linear-gradient(90deg, var(--accent-1), var(--accent-2));
+  color: #ffffff;
+  padding: 0.35rem 0.65rem;
+  border-radius: 8px;
+  box-shadow: 0 6px 18px rgba(99, 102, 241, 0.12);
+  transition:
+    transform 160ms ease,
+    box-shadow 160ms ease;
+  transform: translateY(0);
+}
+
+/* Hover / subtle lift */
+.nav-link:hover:not(.active) {
+  background: rgba(99, 102, 241, 0.06);
+  border-radius: 8px;
+}
+
+/* Keyboard focus for accessibility */
+.nav-link:focus-visible {
+  outline: 3px solid rgba(99, 102, 241, 0.16);
+  outline-offset: 2px;
+  border-radius: 8px;
+}
+
+/* Small underline variant (optional) */
+.nav-link.active::after {
+  content: "";
+  display: block;
+  height: 3px;
+  width: 100%;
+  margin-top: 6px;
+  border-radius: 3px;
+  background: linear-gradient(90deg, var(--accent-1), var(--accent-2));
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between; /* nav links on left, buttons on right */
+  align-items: center;
+  padding: 1rem 2rem;
+}
+
+.nav-right {
+  display: flex;
+  align-items: center;
+}
+
+.theme-button {
+  background: transparent;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  padding: 0.4rem 0.6rem;
+  border-radius: 8px;
+  cursor: pointer;
+  color: var(--text);
+}
+html.dark .theme-button {
+  border-color: rgba(255, 255, 255, 0.08);
+  color: var(--text);
+}
+
+/* profile thumbnail shown next to brand when not on About page */
+.nav-profile {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-left: 10px;
+  border: 2px solid rgba(255, 255, 255, 0.9);
+  box-shadow: 0 6px 18px rgba(2, 6, 23, 0.08);
+  cursor: pointer;
+}
+
+/* theme button: show icon always, hide label on small screens */
+.theme-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: transparent;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  padding: 6px 10px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+/* hide label on narrow widths and keep icon visible */
+.theme-label {
+  display: inline-block;
+}
+
+/* small-screen behaviour: hide theme label, reduce profile size */
+@media (max-width: 600px) {
+  .theme-label {
+    display: none;
+  }
+  .nav-profile {
+    width: 30px;
+    height: 30px;
+    margin-left: 8px;
+  }
+  /* ensure nav links collapse correctly */
+  .nav-links {
+    display: none;
+  }
+  .nav-links.open {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: var(--nav-height);
+    left: 0;
+    right: 0;
+    background: var(--bg);
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 0 10px 30px rgba(2, 6, 23, 0.12);
+  }
+  .navbar {
+    padding: 0.75rem 1rem;
+  }
+  .brand {
+    font-size: 0.9rem;
+  }
+  .nav-right {
+    order: 3;
+  }
+  .hero {
+    padding: 2rem 1rem;
+  }
+  .hero-title {
+    font-size: 1.5rem;
+  }
+  .profile-img {
+    width: 140px;
+    height: 140px;
+  }
+}

@@ -1,23 +1,23 @@
 import React from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Layout from "./components/Layout";
 import About from "./components/About";
+import Education from "./components/Education";
 import Projects from "./components/Projects";
 import Skills from "./components/Skills";
-import Contact from "./components/Contact";
-import Header from "./components/Header";
-import Education from "./components/Education";
 
 function App() {
   return (
-    <div className="min-h-screen bg-white text-black dark:bg-gray-900 dark:text-white">
-      <Header />
-      <main className="p-6 space-y-12">
-        <About />
-        <Projects />
-        <Education />
-        <Skills />
-        <Contact />
-      </main>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route element={<Layout />}>
+          <Route path="/" element={<About />} />
+          <Route path="/education" element={<Education />} />
+          <Route path="/projects" element={<Projects />} />
+          <Route path="/skills" element={<Skills />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
   );
 }
 

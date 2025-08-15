@@ -1,35 +1,109 @@
-import { useSelector } from "react-redux";
-import { RootState } from "../redux/store";
-import { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
+import { NavLink, useLocation } from "react-router-dom";
 import { getInitialTheme, setTheme } from "../utils/theme";
-import "../index.css"; // Optional: move to global styles if using CSS Modules
+import profileImg from "../assets/profile.jpg";
+import "./Header.css";
 
-const Header = () => {
-  const { name, title } = useSelector((state: RootState) => state.profile);
-  const [darkMode, setDarkMode] = useState(getInitialTheme());
+const Header: React.FC = () => {
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [darkMode, setDarkMode] = useState<boolean>(getInitialTheme());
+  const location = useLocation();
+  const isAbout = location.pathname === "/";
 
   useEffect(() => {
     document.documentElement.classList.toggle("dark", darkMode);
     setTheme(darkMode);
   }, [darkMode]);
 
-  const toggleTheme = () => setDarkMode((prev) => !prev);
-
   return (
-    <header className="p-6 flex justify-between items-center shadow-md bg-white dark:bg-gray-900 transition-colors duration-300">
-      <div>
-        <h1 className="text-3xl font-bold text-gray-900 dark:text-white">
-          {name}
-        </h1>
-        <p className="text-sm text-gray-600 dark:text-gray-300">{title}</p>
-      </div>
-      <button
-        onClick={toggleTheme}
-        className="px-4 py-2 bg-gray-100 dark:bg-gray-800 text-gray-800 dark:text-gray-100 rounded transition-colors duration-200 hover:bg-gray-200 dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-        aria-label="Toggle dark mode"
-      >
-        {darkMode ? "🌞 Light Mode" : "🌙 Dark Mode"}
-      </button>
+    <header className="site-header">
+      <nav className="navbar" role="navigation" aria-label="Main navigation">
+        <div className="nav-left">
+          <NavLink to="/" className="brand" onClick={() => setMenuOpen(false)}>
+            Home
+          </NavLink>
+        </div>
+
+        <ul
+          className={`nav-links ${menuOpen ? "open" : ""}`}
+          role="menubar"
+          id="primary-navigation"
+        >
+          <li role="none">
+            <NavLink
+              to="/"
+              end
+              role="menuitem"
+              className={({ isActive }) =>
+                `nav-link ${isActive ? "active" : ""}`
+              }
+              onClick={() => setMenuOpen(false)}
+            >
+              About
+            </NavLink>
+          </li>
+          <li role="none">
+            <NavLink
+              to="/education"
+              role="menuitem"
+              className={({ isActive }) =>
+                `nav-link ${isActive ? "active" : ""}`
+              }
+              onClick={() => setMenuOpen(false)}
+            >
+              Education
+            </NavLink>
+          </li>
+          <li role="none">
+            <NavLink
+              to="/projects"
+              role="menuitem"
+              className={({ isActive }) =>
+                `nav-link ${isActive ? "active" : ""}`
+              }
+              onClick={() => setMenuOpen(false)}
+            >
+              Projects
+            </NavLink>
+          </li>
+          <li role="none">
+            <NavLink
+              to="/skills"
+              role="menuitem"
+              className={({ isActive }) =>
+                `nav-link ${isActive ? "active" : ""}`
+              }
+              onClick={() => setMenuOpen(false)}
+            >
+              Skills
+            </NavLink>
+          </li>
+        </ul>
+
+        <div className="nav-right">
+          <button
+            onClick={() => setDarkMode((v) => !v)}
+            className="theme-button"
+            aria-label="Toggle dark mode"
+          >
+            <span className="theme-icon">{darkMode ? "🌞" : "🌙"}</span>
+            <span className="theme-label">{darkMode ? " Light" : " Dark"}</span>
+          </button>
+
+          {/* show small profile image next to brand when not on About page */}
+          {!isAbout && (
+            <img
+              src={profileImg}
+              alt="Profile"
+              className="nav-profile"
+              onClick={() => {
+                setMenuOpen(false);
+                window.location.href = "/";
+              }}
+            />
+          )}
+        </div>
+      </nav>
     </header>
   );
 };
