@@ -1,13 +1,15 @@
-import { useSelector } from 'react-redux';
-import { RootState } from '../redux/store';
-
+import { useSelector } from "react-redux";
+import { RootState } from "../redux/store";
 
 const Projects = () => {
   const projects = useSelector((state: RootState) => state.profile.projects);
 
   return (
     <section aria-labelledby="projects-heading" className="p-6 my-8">
-      <h2 id="projects-heading" className="text-2xl font-bold text-gray-800 dark:text-white mb-6">
+      <h2
+        id="projects-heading"
+        className="text-2xl font-bold text-gray-800 dark:text-white mb-6"
+      >
         Projects
       </h2>
       <div className="grid gap-6 md:grid-cols-2">
