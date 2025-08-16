@@ -13,6 +13,23 @@ const About: React.FC = () => {
     .map((p) => p.trim())
     .filter(Boolean);
 
+  // download handler — place resume.pdf in /public (e.g. public/resume.pdf)
+  const downloadResume = async () => {
+    try {
+      const url = "/Ragu_N_Resume.pdf";
+      // attempt programmatic download for better UX
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "Ragu_N_Resume.pdf";
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+    } catch (err) {
+      // fallback: open in new tab
+      window.open("/Ragu_N_Resume.pdf", "_blank", "noopener");
+    }
+  };
+
   return (
     <div id="about">
       <section className="hero" role="region" aria-label="Intro">
@@ -29,7 +46,9 @@ const About: React.FC = () => {
           </p>
 
           <div className="hero-actions">
-            <button className="btn-primary">Download Resume</button>
+            <button className="btn-primary" onClick={downloadResume}>
+              Download Resume
+            </button>
           </div>
         </div>
 
