@@ -7,6 +7,7 @@ import "./Header.css";
 const Header: React.FC = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [darkMode, setDarkMode] = useState<boolean>(getInitialTheme());
+  const [scrolled, setScrolled] = useState(false);
   const location = useLocation();
   const isAbout = location.pathname === "/";
 
@@ -15,82 +16,79 @@ const Header: React.FC = () => {
     setTheme(darkMode);
   }, [darkMode]);
 
-  return (
-    <header className="site-header">
-      <nav className="navbar" role="navigation" aria-label="Main navigation">
-        <div className="nav-left">
-          <NavLink to="/" className="brand" onClick={() => setMenuOpen(false)}>
-            Home
-          </NavLink>
-        </div>
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 10);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
+  const navItems = [
+    { path: "/", label: "About", icon: "👤" },
+    { path: "/experience", label: "Experience", icon: "💼" },
+    { path: "/education", label: "Education", icon: "🎓" },
+    { path: "/projects", label: "Projects", icon: "🚀" },
+    { path: "/skills", label: "Skills", icon: "⚡" },
+    { path: "/certifications", label: "Certifications", icon: "🏆" },
+  ];
+
+  return (
+    <header className={`site-header ${scrolled ? "scrolled" : ""}`}>
+      <nav className="navbar" role="navigation" aria-label="Main navigation">
+        {/* Logo/Brand */}
+        <NavLink to="/" className="brand" onClick={() => setMenuOpen(false)}>
+          <span className="brand-icon">💻</span>
+          <span>Ragu</span>
+        </NavLink>
+
+        {/* Mobile Menu Toggle */}
+        <button
+          className={`nav-toggle ${menuOpen ? "open" : ""}`}
+          onClick={() => setMenuOpen(!menuOpen)}
+          aria-label="Toggle navigation menu"
+          aria-expanded={menuOpen}
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+
+        {/* Navigation Links */}
         <ul
           className={`nav-links ${menuOpen ? "open" : ""}`}
           role="menubar"
           id="primary-navigation"
         >
-          <li role="none">
-            <NavLink
-              to="/"
-              end
-              role="menuitem"
-              className={({ isActive }) =>
-                `nav-link ${isActive ? "active" : ""}`
-              }
-              onClick={() => setMenuOpen(false)}
-            >
-              About
-            </NavLink>
-          </li>
-          <li role="none">
-            <NavLink
-              to="/education"
-              role="menuitem"
-              className={({ isActive }) =>
-                `nav-link ${isActive ? "active" : ""}`
-              }
-              onClick={() => setMenuOpen(false)}
-            >
-              Education
-            </NavLink>
-          </li>
-          <li role="none">
-            <NavLink
-              to="/projects"
-              role="menuitem"
-              className={({ isActive }) =>
-                `nav-link ${isActive ? "active" : ""}`
-              }
-              onClick={() => setMenuOpen(false)}
-            >
-              Projects
-            </NavLink>
-          </li>
-          <li role="none">
-            <NavLink
-              to="/skills"
-              role="menuitem"
-              className={({ isActive }) =>
-                `nav-link ${isActive ? "active" : ""}`
-              }
-              onClick={() => setMenuOpen(false)}
-            >
-              Skills
-            </NavLink>
-          </li>
+          {navItems.map((item) => (
+            <li key={item.path} role="none">
+              <NavLink
+                to={item.path}
+                end={item.path === "/"}
+                role="menuitem"
+                className={({ isActive }) =>
+                  `nav-link ${isActive ? "active" : ""}`
+                }
+                onClick={() => setMenuOpen(false)}
+              >
+                <span className="nav-icon">{item.icon}</span>
+                <span>{item.label}</span>
+              </NavLink>
+            </li>
+          ))}
         </ul>
 
+        {/* Right Controls */}
         <div className="nav-right">
           <button
             onClick={() => setDarkMode((v) => !v)}
             className="theme-button"
             aria-label="Toggle dark mode"
+            title={darkMode ? "Light mode" : "Dark mode"}
           >
-            <span className="theme-icon">{darkMode ? "🌞" : "🌙"}</span>
-            <span className="theme-label">{darkMode ? " Light" : " Dark"}</span>
+            <span className="theme-icon">{darkMode ? "☀️" : "🌙"}</span>
           </button>
 
-          {/* show small profile image next to brand when not on About page */}
           {!isAbout && (
             <img
               src={profileImg}
@@ -100,6 +98,7 @@ const Header: React.FC = () => {
                 setMenuOpen(false);
                 window.location.href = "/";
               }}
+              title="Go to home"
             />
           )}
         </div>

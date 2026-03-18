@@ -16,7 +16,7 @@ const About: React.FC = () => {
   // download handler — place resume.pdf in /public (e.g. public/resume.pdf)
   const downloadResume = async () => {
     try {
-      const url = "/Ragu_N_Resume.pdf";
+      const url = "/Ragu_N_Resume_Final_v6.pdf";
       // attempt programmatic download for better UX
       const a = document.createElement("a");
       a.href = url;
@@ -26,13 +26,13 @@ const About: React.FC = () => {
       a.remove();
     } catch (err) {
       // fallback: open in new tab
-      window.open("/Ragu_N_Resume.pdf", "_blank", "noopener");
+      window.open("/Ragu_N_Resume_Final_v6.pdf", "_blank", "noopener");
     }
   };
 
   return (
     <div id="about">
-      <section className="hero" role="region" aria-label="Intro">
+      <section className="hero" aria-label="Intro">
         <div className="hero-left">
           <h1 className="hero-title">
             Hi, I am <span className="hero-name">{name}</span>,<br />

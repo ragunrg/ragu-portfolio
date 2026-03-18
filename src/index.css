@@ -1,18 +1,157 @@
-/* styles.css or App.css */
+/* Root Color Variables */
+:root {
+  --accent-1: #6366f1;
+  --accent-2: #8b5cf6;
+  --accent-3: #ec4899;
+  --bg: #ffffff;
+  --text: #0f1724;
+  --muted: #556073;
+  --card-bg: #f8fafc;
+  --border: rgba(0, 0, 0, 0.06);
+}
+
+html.dark {
+  --bg: #071024;
+  --text: #e6eef8;
+  --muted: #9aa8bf;
+  --card-bg: #0b1220;
+  --border: rgba(255, 255, 255, 0.08);
+}
+
+/* Global Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body, #root {
+  height: 100%;
+}
 
 body {
-  background-color: white;
-  color: black;
+  background-color: var(--bg);
+  color: var(--text);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition: background-color 0.3s, color 0.3s;
+  line-height: 1.6;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+main {
+  min-height: calc(100vh - 64px);
+  padding-bottom: 3rem;
+}
+
+/* Enhanced Typography */
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+h2 {
+  font-size: 2rem;
+  font-weight: 800;
+  margin-bottom: 1.5rem;
+  background: linear-gradient(90deg, var(--accent-1), var(--accent-2));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+h3 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--text);
+}
+
+p {
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+a {
+  color: var(--accent-1);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+a:hover {
+  color: var(--accent-2);
+}
+
+/* Card Base Styles (for Tailwind classes) */
+.bg-white.dark\\:bg-gray-800,
+[class*="bg-white"],
+[class*="bg-gray"] {
+  background-color: var(--card-bg);
+  border-color: var(--border);
+}
+
+.border-gray-200.dark\\:border-gray-700,
+[class*="border-gray"] {
+  border-color: var(--border);
+}
+
+.text-gray-800.dark\\:text-white,
+[class*="text-gray"] {
+  color: var(--text);
+}
+
+.text-gray-700.dark\\:text-gray-300 {
+  color: var(--muted);
+}
+
+.text-blue-500.dark\\:text-blue-400 {
+  color: var(--accent-1);
+}
+
+.text-blue-600.dark\\:text-blue-400 {
+  color: var(--accent-1);
+}
+
+.bg-blue-50.dark\\:bg-blue-900 {
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(139, 92, 246, 0.1));
+}
+
+.shadow-sm,
+.hover\\:shadow-md:hover,
+.transition-shadow {
+  transition: box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Responsive utilities */
+@media (max-width: 768px) {
+  h2 {
+    font-size: 1.5rem;
+  }
+  
+  h3 {
+    font-size: 1.1rem;
+  }
+  
+  main {
+    padding: 0 1rem;
+  }
 }
 
 /* When dark mode is active */
 html.dark body {
-  background-color: #121212;
-  color: white;
+  background-color: #071024;
+  color: var(--text);
 }
 
 /* Optional - dark mode for button */
 html.dark .theme-toggle-btn {
-  background-color: #444;
+  background-color: #1e293b;
   color: white;
 }
+
