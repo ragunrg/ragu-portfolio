@@ -25,10 +25,21 @@ export interface Certifications {
   link: string;
 }
 
+export interface Skill {
+  name: string;
+  category: string;
+  proficiency: number;
+  years: number;
+  icon: string;
+  description: string;
+}
+
 export interface Education {
   degree: string;
+  field?: string;
   institution: string;
-  year: string;
+  year: number;
+  grade?: string;
 }
 
 export interface Profile {
@@ -37,7 +48,7 @@ export interface Profile {
   about: string;
   experience?: WorkExperience[];
   projects: Project[];
-  skills: string[];
+  skills: Skill[];
   contact: Contact;
   certifications: Certifications[];
   education?: any[];

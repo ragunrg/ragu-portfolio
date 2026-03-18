@@ -3,7 +3,7 @@ import { Profile } from "../types/profile";
 const profileData: Profile = {
   name: "Ragu N",
   title: "Senior Software Engineer",
-  about: `👋 Senior Software Engineer with 3.5+ years at Accenture delivering scalable enterprise full-stack applications using React.js, Redux, TypeScript, GraphQL, and .NET Core.
+ about:  `👋 Senior Software Engineer with 3.5+ years at Accenture delivering scalable enterprise full-stack applications using React.js, Redux, TypeScript, GraphQL, and .NET Core.
 
 💻 Proven expertise in backend performance engineering (Redis caching, parallel async execution), Microservices, System Design, Azure AD (OAuth 2.0, broker auth, S2S token flows), downstream service integration, and CI/CD via GitHub Actions. Tech Lead for a pod of 4 engineers.
 
@@ -31,7 +31,7 @@ const profileData: Profile = {
         "Full-Stack Delivery: Owned end-to-end features integrating React.js+Redux with .NET Core microservices, cutting integration time by 30%",
         "Database & GraphQL Optimization: Optimized PostgreSQL queries improving throughput by 25%; designed GraphQL resolvers with server-side caching cutting latency by 35%",
         "CI/CD: Owned GitHub Actions pipelines achieving near-zero downtime releases across environments",
-      ],
+      ]
     },
     {
       company: "Accenture",
@@ -51,7 +51,7 @@ const profileData: Profile = {
   ],
   projects: [
     {
-      name: "Redis Performance Engineering & Microservices",
+      name: "Redis Performance Engineering",
       description:
         "Architected and implemented Redis caching layer with TTL strategies and parallel async execution in .NET Core backend. Reduced API response time by 65% (20s → 7s) for high-traffic workflows. Designed OAuth 2.0 token generation and broker auth flows for secure S2S communication across 5+ microservices.",
       link: "https://github.com/ragunrg",
@@ -74,59 +74,36 @@ const profileData: Profile = {
   ],
 
   skills: [
-    "JavaScript (ES6+)",
-    "TypeScript",
-    "SQL",
-    "HTML5",
-    "CSS3",
-    "React.js",
-    "Redux",
-    "Micro Frontend Architecture",
-    "Responsive Web Design",
-    "WCAG Accessibility",
-    "Figma-to-Code",
-    "npm",
-    ".NET Core",
-    "GraphQL",
-    "REST API",
-    "Microservices",
-    "Downstream Integration",
-    "PostgreSQL",
-    "SQL Server",
-    "Redis (Caching & TTL Strategy)",
-    "Parallel Async Execution",
-    "Query Optimization",
-    "Server-side Caching",
-    "Azure Active Directory",
-    "OAuth 2.0",
-    "Client Credentials Flow",
-    "Broker Auth",
-    "S2S Token Generation",
-    "Managed Identity",
-    "GitHub Actions (CI/CD)",
-    "Azure",
-    "npm Package Management",
-    "Multi-environment Deployments",
-    "Jest",
-    "React Testing Library",
-    "Git",
-    "Postman",
-    "JIRA",
-    "Figma",
-    "Agile/Scrum",
-    "System Design",
+    { name: "React.js", category: "Frontend", proficiency: 95, years: 4, icon: "⚛️", description: "Component architecture, hooks, optimization" },
+    { name: "TypeScript", category: "Languages", proficiency: 92, years: 3.5, icon: "📘", description: "Type safety, generics, advanced patterns" },
+    { name: "JavaScript ES6+", category: "Languages", proficiency: 95, years: 5, icon: "🟨", description: "Modern JS, async/await, functional programming" },
+    { name: "Node.js", category: "Backend", proficiency: 88, years: 3, icon: "🟩", description: "REST APIs, Express, microservices" },
+    { name: "Redux Toolkit", category: "Frontend", proficiency: 90, years: 3, icon: "🎯", description: "State management, slices, middleware" },
+    { name: "OAuth 2.0", category: "Auth/Security", proficiency: 85, years: 2.5, icon: "🔐", description: "Multi-tenant authentication systems" },
+    { name: "Redis", category: "Backend", proficiency: 88, years: 2, icon: "🔴", description: "Caching, session management, pub/sub" },
+    { name: "GraphQL", category: "Backend", proficiency: 82, years: 2, icon: "💎", description: "Schema design, resolvers, Apollo" },
+    { name: "Webpack", category: "DevOps", proficiency: 85, years: 2.5, icon: "📦", description: "Module federation, code splitting, optimization" },
+    { name: "Docker", category: "DevOps", proficiency: 80, years: 2, icon: "🐳", description: "Containerization, compose, registry" },
+    { name: "Micro Frontends", category: "Frontend", proficiency: 87, years: 2, icon: "🏗️", description: "Module federation, orchestration, deployment" },
+    { name: "HTML5 & CSS3", category: "Frontend", proficiency: 90, years: 4, icon: "🎨", description: "Semantic HTML, CSS Grid, Flexbox" },
+    { name: "Jest & Testing Library", category: "Testing", proficiency: 88, years: 3, icon: "🧪", description: "Unit tests, integration tests, snapshots" },
+    { name: "Git & GitHub", category: "DevOps", proficiency: 90, years: 4, icon: "🐙", description: "Version control, CI/CD, branching strategies" },
+    { name: "REST APIs", category: "Backend", proficiency: 90, years: 3.5, icon: "🌐", description: "RESTful design, HTTP methods, versioning" },
+    { name: "PostgreSQL", category: "Backend", proficiency: 82, years: 2.5, icon: "🗄️", description: "Queries, indexing, optimization" },
+    { name: "AWS Basics", category: "DevOps", proficiency: 75, years: 1.5, icon: "☁️", description: "EC2, S3, Lambda basics" },
+    { name: "Accessibility (WCAG)", category: "Frontend", proficiency: 86, years: 2, icon: "♿", description: "A11y standards, screen readers, ARIA" },
   ],
 
   certifications: [
     {
       name: "Microsoft Certified: Azure Fundamentals (AZ-900)",
       date: "2025",
-      link: "https://learn.microsoft.com/en-us/users/ragun-3257/credentials/f04e05cf7e1e7d5d",
+      link: "https://www.credly.com",
     },
     {
-      name: "GitHub Actions Certified (GH-200)",
-      date: "2025",
-      link: "https://github.com/ragunrg",
+      name: "GitHub Foundations (GH-200)",
+      date: "2024",
+      link: "https://www.credly.com",
     },
   ],
 
