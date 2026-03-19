@@ -11,11 +11,8 @@ const Projects = () => {
       </h2>
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
         {projects.map((project, idx) => (
-          <a
+          <div
             key={idx}
-            href={project.link}
-            target="_blank"
-            rel="noopener noreferrer"
             className="group relative bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 p-6 rounded-lg shadow-sm hover:shadow-xl transition-all duration-300 hover:border-indigo-500 dark:hover:border-indigo-400 cursor-pointer overflow-hidden"
           >
             {/* Background decoration */}
@@ -32,9 +29,6 @@ const Projects = () => {
                     {project.name}
                   </h3>
                 </div>
-                <span className="text-2xl text-indigo-500 opacity-0 group-hover:opacity-100 transition-all duration-300 transform group-hover:translate-x-2">
-                  ↗
-                </span>
               </div>
 
               {/* Description */}
@@ -59,7 +53,7 @@ const Projects = () => {
               {/* Hover indicator */}
               <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-indigo-500 to-purple-500 transform origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-300" />
             </div>
-          </a>
+          </div>
         ))}
       </div>
     </section>
