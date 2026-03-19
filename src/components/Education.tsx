@@ -50,122 +50,57 @@ const Education: React.FC = () => {
   };
 
   return (
-    <section aria-labelledby="education-heading" className="my-8 p-6">
+    <section aria-labelledby="education-heading" className="my-8 px-2 md:px-8">
       {/* Header */}
-      <div className="mb-12">
-        <h2 id="education-heading" className="text-4xl font-bold text-gray-900 dark:text-white mb-2">
-          🎓 Education
+      <div className="mb-10 text-center">
+        <h2 id="education-heading" className="text-4xl font-extrabold text-blue-700 dark:text-blue-300 mb-2 tracking-tight">
+          <span className="inline-block align-middle mr-2">🎓</span>Education
         </h2>
-        <p className="text-gray-600 dark:text-gray-400">
-          Academic journey and qualifications
-        </p>
+        <p className="text-gray-500 dark:text-gray-400 text-lg">Academic journey and qualifications</p>
       </div>
 
-      {/* Timeline View */}
-      <div className="relative">
-        {/* Vertical line */}
-        <div className="absolute left-6 top-0 bottom-0 w-1 bg-gradient-to-b from-blue-500 via-purple-500 to-pink-500 hidden md:block opacity-30" />
-
-        {/* Education Items */}
-        <div className="space-y-6">
-          {educationData.map((edu, idx) => {
-            const icon = getDegreeIcon(edu.degree);
-            const isLatest = idx === 0;
-
-            return (
-              <div key={`${edu.institution}-${idx}`} className="flex gap-6">
-                {/* Timeline dot */}
-                <div className="relative flex flex-col items-center hidden md:flex flex-shrink-0">
-                  <div className={`w-14 h-14 rounded-full border-4 flex items-center justify-center text-2xl transition-all duration-300 ${
-                    isLatest
-                      ? "border-blue-500 bg-blue-500/10 shadow-lg shadow-blue-500/30"
-                      : "border-gray-300 dark:border-gray-600 bg-gray-100 dark:bg-gray-800"
-                  }`}>
-                    {icon}
-                  </div>
-                </div>
-
-                {/* Card */}
-                <div className="flex-1 pt-1">
-                  <div className={`group relative overflow-hidden rounded-xl border transition-all duration-300 p-6 ${
-                    isLatest
-                      ? "border-blue-500/50 bg-blue-500/5 dark:bg-blue-500/10 hover:border-blue-500 hover:shadow-xl hover:shadow-blue-500/10"
-                      : "border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800/50 hover:border-gray-300 dark:hover:border-gray-600 hover:shadow-lg"
-                  }`}>
-                    {/* Top section: Degree & Year */}
-                    <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-3">
-                      <div>
-                        <h3 className="text-xl font-bold text-gray-900 dark:text-white">
-                          {edu.degree}
-                        </h3>
-                        {edu.field && (
-                          <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
-                            {edu.field}
-                          </p>
-                        )}
-                      </div>
-                      <div className="flex items-center gap-3">
-                        <span className="text-sm font-semibold text-gray-600 dark:text-gray-400 px-3 py-1.5 rounded-lg bg-gray-100 dark:bg-gray-700/50">
-                          {edu.year}
-                        </span>
-                        {edu.grade && (
-                          <span className="text-sm font-bold text-white bg-gradient-to-r from-blue-500 to-purple-500 px-3 py-1.5 rounded-lg">
-                            {edu.grade}
-                          </span>
-                        )}
-                      </div>
-                    </div>
-
-                    {/* Institution */}
-                    <p className="text-sm text-gray-600 dark:text-gray-300 flex items-center gap-2">
-                      <span className="text-base">🏫</span>
-                      {edu.institution}
-                    </p>
-                  </div>
-                </div>
+      {/* Card Grid */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        {educationData.map((edu, idx) => {
+          const icon = getDegreeIcon(edu.degree);
+          return (
+            <div
+              key={`${edu.institution}-${idx}`}
+              className="relative bg-white dark:bg-gray-900/80 border border-gray-200 dark:border-gray-700 rounded-2xl shadow-lg hover:shadow-2xl transition-shadow duration-300 p-7 flex flex-col min-h-[220px]"
+            >
+              {/* Icon */}
+              <div className="absolute -top-7 left-1/2 -translate-x-1/2 w-14 h-14 rounded-full bg-gradient-to-tr from-blue-500 to-purple-500 flex items-center justify-center text-3xl text-white shadow-lg border-4 border-white dark:border-gray-900">
+                {icon}
               </div>
-            );
-          })}
-        </div>
-      </div>
-
-      {/* Summary Stats */}
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-12">
-        <div className="p-4 bg-white dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 rounded-lg text-center hover:shadow-lg transition-all duration-300">
-          <div className="text-2xl font-bold text-blue-600 dark:text-blue-400 mb-1">
-            {educationData.length}
-          </div>
-          <p className="text-xs text-gray-600 dark:text-gray-400 font-semibold">
-            Qualifications
-          </p>
-        </div>
-
-        <div className="p-4 bg-white dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 rounded-lg text-center hover:shadow-lg transition-all duration-300">
-          <div className="text-2xl font-bold text-purple-600 dark:text-purple-400 mb-1">
-            {new Date().getFullYear() - parseInt(educationData[educationData.length - 1]?.year || "2016")}+
-          </div>
-          <p className="text-xs text-gray-600 dark:text-gray-400 font-semibold">
-            Years Studying
-          </p>
-        </div>
-
-        <div className="p-4 bg-white dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 rounded-lg text-center hover:shadow-lg transition-all duration-300">
-          <div className="text-2xl font-bold text-green-600 dark:text-green-400 mb-1">
-            ✓
-          </div>
-          <p className="text-xs text-gray-600 dark:text-gray-400 font-semibold">
-            All Complete
-          </p>
-        </div>
-
-        <div className="p-4 bg-white dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 rounded-lg text-center hover:shadow-lg transition-all duration-300">
-          <div className="text-2xl font-bold text-pink-600 dark:text-pink-400 mb-1">
-            🎯
-          </div>
-          <p className="text-xs text-gray-600 dark:text-gray-400 font-semibold">
-            Continuous Learning
-          </p>
-        </div>
+              {/* Degree & Field */}
+              <div className="mt-10 mb-2 text-center">
+                <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-1">{edu.degree}</h3>
+                {edu.field && (
+                  <p className="text-base text-gray-600 dark:text-gray-300">{edu.field}</p>
+                )}
+              </div>
+              {/* Year */}
+              <div className="flex justify-center items-center mb-3">
+                <span className="text-sm font-semibold text-gray-700 dark:text-gray-300 px-4 py-1.5 rounded-full bg-gray-100 dark:bg-gray-700/60 border border-gray-200 dark:border-gray-600">
+                  {edu.year}
+                </span>
+              </div>
+              {/* Grade */}
+              {edu.grade && (
+                <div className="flex justify-center items-center mb-5">
+                  <span className="text-sm font-bold text-white bg-gradient-to-r from-blue-500 to-purple-500 px-4 py-1.5 rounded-full shadow">
+                    {edu.grade}
+                  </span>
+                </div>
+              )}
+              {/* Institution */}
+              <div className="flex items-center justify-center gap-2 mb-2">
+                <span className="text-lg">🏫</span>
+                <span className="text-base text-gray-700 dark:text-gray-200 font-medium">{edu.institution}</span>
+              </div>
+            </div>
+          );
+        })}
       </div>
     </section>
   );
