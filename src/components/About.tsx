@@ -17,15 +17,17 @@ const About: React.FC = () => {
   const downloadResume = async () => {
     try {
       const url = "/Ragu_N_Resume_Final_v6.pdf";
-      // attempt programmatic download for better UX
-      const a = document.createElement("a");
-      a.href = url;
-      a.download = "Ragu_N_Resume.pdf";
-      document.body.appendChild(a);
-      a.click();
-      a.remove();
+      const response = await fetch(url);
+      const blob = await response.blob();
+      const link = document.createElement("a");
+      link.href = URL.createObjectURL(blob);
+      link.download = "Ragu_N_Resume.pdf";
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      URL.revokeObjectURL(link.href);
     } catch (err) {
-      // fallback: open in new tab
+      console.error("Download error:", err);
       window.open("/Ragu_N_Resume_Final_v6.pdf", "_blank", "noopener");
     }
   };
